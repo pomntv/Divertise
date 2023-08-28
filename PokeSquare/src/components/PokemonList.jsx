@@ -66,7 +66,7 @@ const PokemonList = () => {
 
   return (
     <div>
-      <h1>Random Pokémon List</h1>
+      <h1>Random Pokémon List by <span style={{color: 'yellow'}}>Pom</span> <span style={{color: 'red'}}>Nantavit</span></h1>
       <ReloadButton onClick={fetchRandomPokemon} />
       <div className="pokemon-grid">
         {pokemonData.map((pokemon, index) => (
