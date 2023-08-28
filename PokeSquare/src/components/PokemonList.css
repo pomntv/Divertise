@@ -1,13 +1,64 @@
 /* src/components/PokemonList.css */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+body {
+  background-color: #1a1a1a;
+  color: white;
+}
+
 .pokemon-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  
-  .pokemon-item {
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+}
+
+.pokemon-item {
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+  animation: slideInFromLeft .5s ease-in-out;
+}
+
+.pokemon-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.pokemon-item img {
+  max-width: 100px;
+  margin-bottom: 10px;
+  transition: transform .2s ease-in-out;
+}
+
+.pokemon-item img:hover {
+  transform: rotate(360deg);
+}
+
+button {
+  padding: 10px 20px;
+  margin: 20px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
