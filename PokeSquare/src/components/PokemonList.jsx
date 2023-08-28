@@ -7,7 +7,7 @@ const PokemonList = () => {
   const [pokemonData, setPokemonData] = useState([]);
 
   const fetchRandomPokemon = () => {
-    // Generate an array of 9 unique random numbers between 1 and 898 (898 = all pokemon gem 1-8)
+    // Generate an array of 9 unique random numbers between 1 and 898 (898 = all pokemon gen 1-8)
     const randomNumbers = Array.from({ length: 9 }, () => Math.floor(Math.random() * 898) + 1);
 
     // Fetch the Pokémon corresponding to the random numbers
@@ -25,6 +25,10 @@ const PokemonList = () => {
       console.error('Error fetching data:', error);
     });
   };
+
+
+
+
   // random const of 6 picture
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -39,7 +43,13 @@ const PokemonList = () => {
     fetchRandomPokemon();
   }, []);
 
-  
+  const redirectToPokedex = (pokemonName) => {
+    // window.location.href = `https://www.serebii.net/pokedex-swsh/${pokemonName}/`;
+    window.open(`https://www.serebii.net/pokedex-swsh/${pokemonName}/`, '_blank');
+  };
+
+
+
   return (
     <div>
       <h1>Random Pokémon List</h1>
@@ -49,7 +59,8 @@ const PokemonList = () => {
           <div 
             key={index} 
             className="pokemon-item" 
-            style={{ border: `2px solid ${getRandomColor()}` }}  
+            style={{ border: `2px solid ${getRandomColor()}` }}
+            onClick={() => redirectToPokedex(pokemon.name)}
           >
             <img src={pokemon.image} alt={pokemon.name} />
             <p>{pokemon.name}</p>
