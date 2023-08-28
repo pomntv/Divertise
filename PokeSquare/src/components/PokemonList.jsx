@@ -48,7 +48,21 @@ const PokemonList = () => {
     window.open(`https://www.serebii.net/pokedex-swsh/${pokemonName}/`, '_blank');
   };
 
+  const fetchSingleRandomPokemon = async (index) => {
+    const randomNumber = Math.floor(Math.random() * 898) + 1;
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomNumber}`);
+    const newPokemon = {
+      name: response.data.name,
+      image: response.data.sprites.front_default,
+    };
+    const updatedPokemonData = [...pokemonData];
+    updatedPokemonData[index] = newPokemon;
+    setPokemonData(updatedPokemonData);
+  };
 
+  const handleDragEnd = (index) => {
+    fetchSingleRandomPokemon(index);
+  };
 
   return (
     <div>
@@ -61,6 +75,8 @@ const PokemonList = () => {
             className="pokemon-item" 
             style={{ border: `2px solid ${getRandomColor()}` }}
             onClick={() => redirectToPokedex(pokemon.name)}
+            draggable
+            onDragEnd={() => handleDragEnd(index)}
           >
             <img src={pokemon.image} alt={pokemon.name} />
             <p>{pokemon.name}</p>
